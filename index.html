@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1a1a2e">
+  <title>cattowriter 🐱</title>
+  <meta name="description" content="LBH fan Sydney 🇦🇺 | rubeurs | แฟนคลับ อีบยองฮอน อีจองแจ | Writer: cattowriter">
+  <meta property="og:title" content="cattowriter 🐱">
+  <meta property="og:description" content="LBH fan Sydney 🇦🇺 | rubeurs | แฟนคลับ อีบยองฮอน อีจองแจ">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d0d1a;
+      --surface: rgba(255,255,255,0.05);
+      --surface-hover: rgba(255,255,255,0.09);
+      --border: rgba(255,255,255,0.1);
+      --text: #f0ece6;
+      --text-muted: rgba(240,236,230,0.55);
+      --accent: #c4a87c;
+      --accent-glow: rgba(196,168,124,0.15);
+      --font: 'Lato', 'Noto Sans Thai', sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Subtle starfield bg */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 20%, rgba(196,168,124,0.06) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 80%, rgba(100,120,200,0.05) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .card {
+      position: relative;
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+    }
+
+    /* Avatar */
+    .avatar-wrap {
+      margin-bottom: 18px;
+    }
+    .avatar {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      border: 2px solid var(--accent);
+      box-shadow: 0 0 24px var(--accent-glow);
+      background: var(--surface);
+      font-size: 2.8rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+    }
+
+    /* Name */
+    .username {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: 0.04em;
+      margin-bottom: 10px;
+    }
+
+    /* Bio */
+    .bio {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 28px;
+      padding: 0 8px;
+    }
+    .bio .tag {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    /* Divider */
+    .divider {
+      width: 40px;
+      height: 1px;
+      background: var(--accent);
+      margin: 0 auto 28px;
+      opacity: 0.4;
+    }
+
+    /* Links */
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+
+    .link-btn {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: all 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .link-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--surface-hover);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+    .link-btn:hover::before { opacity: 1; }
+    .link-btn:hover {
+      border-color: rgba(196,168,124,0.35);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    .link-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.1rem;
+      position: relative;
+      z-index: 1;
+    }
+    .link-text {
+      flex: 1;
+      text-align: left;
+      position: relative;
+      z-index: 1;
+    }
+    .link-title {
+      display: block;
+      font-weight: 600;
+      font-size: 0.88rem;
+    }
+    .link-sub {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+    .link-arrow {
+      position: relative;
+      z-index: 1;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+    }
+
+    /* Icon colors */
+    .icon-readawrite { background: rgba(196,168,124,0.15); color: var(--accent); }
+    .icon-x         { background: rgba(255,255,255,0.08); color: #e8e8e8; }
+    .icon-tiktok    { background: rgba(0,242,234,0.1); color: #69c9d0; }
+    .icon-ig        { background: rgba(225,48,108,0.12); color: #e1306c; }
+    .icon-fb        { background: rgba(66,103,178,0.15); color: #6d93d8; }
+
+    /* Featured LBH project */
+    .featured {
+      background: linear-gradient(135deg, rgba(196,168,124,0.08), rgba(196,168,124,0.03));
+      border: 1px solid rgba(196,168,124,0.25);
+      border-radius: 14px;
+      padding: 16px 20px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 10px;
+      transition: all 0.2s ease;
+    }
+    .featured:hover {
+      border-color: rgba(196,168,124,0.5);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 24px rgba(196,168,124,0.12);
+    }
+    .featured-badge {
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(196,168,124,0.12);
+      padding: 3px 8px;
+      border-radius: 50px;
+      margin-bottom: 4px;
+      display: inline-block;
+    }
+    .featured-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+    .featured-sub {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+    .featured-emoji {
+      font-size: 2rem;
+      flex-shrink: 0;
+    }
+
+    /* Social row */
+    .social-row {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+    .social-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .social-icon:hover {
+      background: var(--surface-hover);
+      border-color: rgba(196,168,124,0.3);
+      color: var(--text);
+      transform: translateY(-2px);
+    }
+    .social-icon svg { width: 18px; height: 18px; }
+
+    /* Footer */
+    .footer {
+      font-size: 0.7rem;
+      color: rgba(240,236,230,0.25);
+      letter-spacing: 0.06em;
+    }
+
+    /* Animations */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .card > * {
+      animation: fadeUp 0.5s ease both;
+    }
+    .avatar-wrap  { animation-delay: 0.05s; }
+    .username     { animation-delay: 0.1s; }
+    .bio          { animation-delay: 0.15s; }
+    .divider      { animation-delay: 0.18s; }
+    .featured     { animation-delay: 0.22s; }
+    .links        { animation-delay: 0.26s; }
+    .social-row   { animation-delay: 0.32s; }
+    .footer       { animation-delay: 0.36s; }
+  </style>
+</head>
+<body>
+  <div class="card">
+
+    <div class="avatar-wrap">
+      <div class="avatar">🐱</div>
+    </div>
+
+    <h1 class="username">@cattowriter</h1>
+
+    <p class="bio">
+      LBH fan Sydney 🇦🇺 | rubeurs<br>
+      แฟนคลับ อีบยองฮอน อีจองแจ 🦑🎮<br>
+      ฟิคหนึ่งท้าย ReadAWrite รู้กันแค่นี้ | inhun<br>
+      <span class="tag">#หนึ่งท้าย #inhun</span>
+    </p>
+
+    <div class="divider"></div>
+
+    <!-- Featured project -->
+    <a class="featured" href="https://cattodata.com/LBH_global_project/" target="_blank" rel="noopener noreferrer">
+      <div class="featured-emoji">🌍</div>
+      <div>
+        <span class="featured-badge">✨ Active Project</span>
+        <div class="featured-title">LBH Global Fan Project</div>
+        <div class="featured-sub">ส่งข้อความให้อีบยองฮอน — Fanbook Global Edition</div>
+      </div>
+    </a>
+
+    <!-- Links -->
+    <div class="links">
+      <a class="link-btn" href="https://cattowriter.readawrite.com" target="_blank" rel="noopener noreferrer">
+        <div class="link-icon icon-readawrite">✍️</div>
+        <div class="link-text">
+          <span class="link-title">ReadAWrite</span>
+          <span class="link-sub">cattowriter.readawrite.com</span>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+
+      <a class="link-btn" href="https://x.com/cattowriter" target="_blank" rel="noopener noreferrer">
+        <div class="link-icon icon-x">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </div>
+        <div class="link-text">
+          <span class="link-title">X (Twitter)</span>
+          <span class="link-sub">@cattowriter</span>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+
+      <a class="link-btn" href="https://www.tiktok.com/@cattowriter" target="_blank" rel="noopener noreferrer">
+        <div class="link-icon icon-tiktok">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.74a4.85 4.85 0 0 1-1.01-.05z"/></svg>
+        </div>
+        <div class="link-text">
+          <span class="link-title">TikTok</span>
+          <span class="link-sub">@cattowriter</span>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+
+      <a class="link-btn" href="https://www.instagram.com/cattowriter" target="_blank" rel="noopener noreferrer">
+        <div class="link-icon icon-ig">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+        </div>
+        <div class="link-text">
+          <span class="link-title">Instagram</span>
+          <span class="link-sub">@cattowriter</span>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+
+      <a class="link-btn" href="https://www.facebook.com/cattowriter" target="_blank" rel="noopener noreferrer">
+        <div class="link-icon icon-fb">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </div>
+        <div class="link-text">
+          <span class="link-title">Facebook</span>
+          <span class="link-sub">cattowriter</span>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+    </div>
+
+    <p class="footer">cattowriter.com · 🐱</p>
+
+  </div>
+</body>
+</html>
