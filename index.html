@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#1a1a2e">
+  <meta name="theme-color" content="#f5efe4">
   <title>cattowriter 🐱</title>
   <meta name="description" content="LBH fan Sydney 🇦🇺 | rubeurs | แฟนคลับ อีบยองฮอน อีจองแจ | Writer: cattowriter">
   <meta property="og:title" content="cattowriter 🐱">
@@ -11,20 +11,24 @@
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300;400;500;600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Noto+Sans+Thai:wght@300;400;500&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg: #0d0d1a;
-      --surface: rgba(255,255,255,0.05);
-      --surface-hover: rgba(255,255,255,0.09);
-      --border: rgba(255,255,255,0.1);
-      --text: #f0ece6;
-      --text-muted: rgba(240,236,230,0.55);
-      --accent: #c4a87c;
-      --accent-glow: rgba(196,168,124,0.15);
-      --font: 'Lato', 'Noto Sans Thai', sans-serif;
+      --bg:           #f5efe4;
+      --bg2:          #ede5d6;
+      --surface:      rgba(255,255,255,0.7);
+      --surface-hover:rgba(255,255,255,0.92);
+      --border:       rgba(160,130,90,0.18);
+      --border-hover: rgba(139,106,62,0.38);
+      --text:         #3a2e22;
+      --text-muted:   #8a7560;
+      --accent:       #8b6a3e;
+      --accent-light: #c4a87c;
+      --accent-glow:  rgba(139,106,62,0.12);
+      --font-head:    'Cormorant Garamond', serif;
+      --font:         'Lato', 'Noto Sans Thai', sans-serif;
     }
 
     body {
@@ -35,19 +39,20 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 40px 20px;
+      padding: 48px 20px;
       position: relative;
       overflow-x: hidden;
     }
 
-    /* Subtle starfield bg */
+    /* Warm paper texture bg */
     body::before {
       content: '';
       position: fixed;
       inset: 0;
       background:
-        radial-gradient(ellipse at 20% 20%, rgba(196,168,124,0.06) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 80%, rgba(100,120,200,0.05) 0%, transparent 50%);
+        radial-gradient(ellipse at 15% 10%, rgba(196,168,124,0.25) 0%, transparent 55%),
+        radial-gradient(ellipse at 90% 90%, rgba(160,130,90,0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(245,239,228,0) 0%, rgba(237,229,214,0.4) 100%);
       pointer-events: none;
     }
 
@@ -60,91 +65,102 @@
 
     /* Avatar */
     .avatar-wrap {
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
     .avatar {
-      width: 88px;
-      height: 88px;
+      width: 96px;
+      height: 96px;
       border-radius: 50%;
-      border: 2px solid var(--accent);
-      box-shadow: 0 0 24px var(--accent-glow);
-      background: var(--surface);
-      font-size: 2.8rem;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      user-select: none;
+      border: 3px solid #fff;
+      box-shadow: 0 4px 24px rgba(139,106,62,0.18), 0 1px 4px rgba(139,106,62,0.1);
+      background: var(--bg2);
+      display: inline-block;
+      overflow: hidden;
+      object-fit: cover;
+    }
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      display: block;
     }
 
     /* Name */
     .username {
-      font-size: 1.35rem;
-      font-weight: 700;
-      color: var(--text);
-      letter-spacing: 0.04em;
+      font-family: var(--font-head);
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.03em;
       margin-bottom: 10px;
     }
 
     /* Bio */
     .bio {
-      font-size: 0.82rem;
+      font-size: 0.83rem;
       color: var(--text-muted);
-      line-height: 1.75;
-      margin-bottom: 28px;
+      line-height: 1.85;
+      margin-bottom: 24px;
       padding: 0 8px;
+      font-family: var(--font);
     }
     .bio .tag {
       color: var(--accent);
-      font-weight: 500;
+      font-weight: 600;
     }
 
     /* Divider */
     .divider {
-      width: 40px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 auto 24px;
+      width: 80%;
+    }
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
       height: 1px;
-      background: var(--accent);
-      margin: 0 auto 28px;
-      opacity: 0.4;
+      background: var(--border);
+    }
+    .divider-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent-light);
     }
 
     /* Links */
     .links {
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      margin-bottom: 32px;
+      gap: 9px;
+      margin-bottom: 24px;
     }
 
     .link-btn {
       display: flex;
       align-items: center;
       gap: 12px;
-      padding: 14px 20px;
+      padding: 13px 18px;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 14px;
       color: var(--text);
       text-decoration: none;
-      font-size: 0.88rem;
+      font-size: 0.87rem;
       font-weight: 500;
-      letter-spacing: 0.02em;
       transition: all 0.2s ease;
-      position: relative;
-      overflow: hidden;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      box-shadow: 0 1px 4px rgba(139,106,62,0.06);
     }
-    .link-btn::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: var(--surface-hover);
-      opacity: 0;
-      transition: opacity 0.2s;
-    }
-    .link-btn:hover::before { opacity: 1; }
     .link-btn:hover {
-      border-color: rgba(196,168,124,0.35);
-      transform: translateY(-1px);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      background: var(--surface-hover);
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(139,106,62,0.12);
     }
 
     .link-icon {
@@ -156,65 +172,62 @@
       justify-content: center;
       flex-shrink: 0;
       font-size: 1.1rem;
-      position: relative;
-      z-index: 1;
     }
     .link-text {
       flex: 1;
       text-align: left;
-      position: relative;
-      z-index: 1;
     }
     .link-title {
       display: block;
       font-weight: 600;
-      font-size: 0.88rem;
+      font-size: 0.87rem;
+      color: var(--text);
     }
     .link-sub {
       display: block;
-      font-size: 0.75rem;
+      font-size: 0.74rem;
       color: var(--text-muted);
       margin-top: 2px;
     }
     .link-arrow {
-      position: relative;
-      z-index: 1;
-      color: var(--text-muted);
-      font-size: 0.75rem;
+      color: var(--accent-light);
+      font-size: 0.8rem;
     }
 
     /* Icon colors */
-    .icon-readawrite { background: rgba(196,168,124,0.15); color: var(--accent); }
-    .icon-x         { background: rgba(255,255,255,0.08); color: #e8e8e8; }
-    .icon-tiktok    { background: rgba(0,242,234,0.1); color: #69c9d0; }
-    .icon-ig        { background: rgba(225,48,108,0.12); color: #e1306c; }
-    .icon-fb        { background: rgba(66,103,178,0.15); color: #6d93d8; }
+    .icon-readawrite { background: rgba(139,106,62,0.1); color: var(--accent); }
+    .icon-x         { background: rgba(30,30,30,0.07);  color: #333; }
+    .icon-tiktok    { background: rgba(0,0,0,0.06);      color: #111; }
+    .icon-ig        { background: rgba(225,48,108,0.09); color: #c13584; }
+    .icon-fb        { background: rgba(24,119,242,0.1);  color: #1877f2; }
 
     /* Featured LBH project */
     .featured {
-      background: linear-gradient(135deg, rgba(196,168,124,0.08), rgba(196,168,124,0.03));
-      border: 1px solid rgba(196,168,124,0.25);
-      border-radius: 14px;
-      padding: 16px 20px;
+      background: linear-gradient(135deg, rgba(139,106,62,0.08) 0%, rgba(196,168,124,0.05) 100%);
+      border: 1px solid rgba(139,106,62,0.22);
+      border-radius: 16px;
+      padding: 15px 18px;
       text-decoration: none;
       display: flex;
       align-items: center;
       gap: 14px;
-      margin-bottom: 10px;
+      margin-bottom: 9px;
       transition: all 0.2s ease;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
     }
     .featured:hover {
-      border-color: rgba(196,168,124,0.5);
-      transform: translateY(-1px);
-      box-shadow: 0 4px 24px rgba(196,168,124,0.12);
+      border-color: rgba(139,106,62,0.4);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(139,106,62,0.1);
     }
     .featured-badge {
-      font-size: 0.6rem;
+      font-size: 0.58rem;
       font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--accent);
-      background: rgba(196,168,124,0.12);
+      background: rgba(139,106,62,0.1);
       padding: 3px 8px;
       border-radius: 50px;
       margin-bottom: 4px;
@@ -225,54 +238,29 @@
       font-weight: 600;
       color: var(--text);
       margin-bottom: 2px;
+      font-family: var(--font-head);
+      letter-spacing: 0.02em;
     }
     .featured-sub {
-      font-size: 0.75rem;
+      font-size: 0.74rem;
       color: var(--text-muted);
     }
     .featured-emoji {
-      font-size: 2rem;
+      font-size: 1.9rem;
       flex-shrink: 0;
     }
 
-    /* Social row */
-    .social-row {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 28px;
-    }
-    .social-icon {
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text-muted);
-      text-decoration: none;
-      transition: all 0.2s ease;
-    }
-    .social-icon:hover {
-      background: var(--surface-hover);
-      border-color: rgba(196,168,124,0.3);
-      color: var(--text);
-      transform: translateY(-2px);
-    }
-    .social-icon svg { width: 18px; height: 18px; }
-
     /* Footer */
     .footer {
-      font-size: 0.7rem;
-      color: rgba(240,236,230,0.25);
-      letter-spacing: 0.06em;
+      font-size: 0.68rem;
+      color: rgba(138,117,96,0.45);
+      letter-spacing: 0.08em;
+      margin-top: 8px;
     }
 
     /* Animations */
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
+      from { opacity: 0; transform: translateY(14px); }
       to   { opacity: 1; transform: translateY(0); }
     }
     .card > * {
@@ -284,18 +272,19 @@
     .divider      { animation-delay: 0.18s; }
     .featured     { animation-delay: 0.22s; }
     .links        { animation-delay: 0.26s; }
-    .social-row   { animation-delay: 0.32s; }
-    .footer       { animation-delay: 0.36s; }
+    .footer       { animation-delay: 0.32s; }
   </style>
 </head>
 <body>
   <div class="card">
 
     <div class="avatar-wrap">
-      <div class="avatar">🐱</div>
+      <div class="avatar">
+        <img src="profile.jpeg" alt="cattowriter" onerror="this.parentElement.innerHTML='🐱'">
+      </div>
     </div>
 
-    <h1 class="username">@cattowriter</h1>
+    <h1 class="username">cattowriter 🐱</h1>
 
     <p class="bio">
       LBH fan Sydney 🇦🇺 | rubeurs<br>
@@ -372,7 +361,7 @@
       </a>
     </div>
 
-    <p class="footer">cattowriter.com · 🐱</p>
+    <p class="footer">cattowriter.com</p>
 
   </div>
 </body>
